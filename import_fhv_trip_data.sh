@@ -26,9 +26,9 @@ for filename in data/fhv_tripdata*.csv; do
   fi
 
   echo "`date`: beginning load for ${filename}"
-  cat $filename | psql nyc-taxi-data -c "COPY fhv_trips_staging ${fhv_schema} FROM stdin CSV HEADER;"
+  cat $filename | psql -U postgres nyc-taxi-data -c "COPY fhv_trips_staging ${fhv_schema} FROM stdin CSV HEADER;"
   echo "`date`: finished raw load for ${filename}"
-  psql nyc-taxi-data -f setup_files/populate_fhv_trips.sql
+  psql -U postgres nyc-taxi-data -f setup_files/populate_fhv_trips.sql
   echo "`date`: loaded trips for ${filename}"
 done;
 
@@ -36,10 +36,10 @@ fhvhv_schema="(hvfhs_license_num,dispatching_base_num,pickup_datetime,dropoff_da
 
 for filename in data/fhvhv_tripdata*.csv; do
   echo "`date`: beginning load for ${filename}"
-  cat $filename | psql nyc-taxi-data -c "COPY fhv_trips_staging ${fhvhv_schema} FROM stdin CSV HEADER;"
+  cat $filename | psql -U postgres nyc-taxi-data -c "COPY fhv_trips_staging ${fhvhv_schema} FROM stdin CSV HEADER;"
   echo "`date`: finished raw load for ${filename}"
-  psql nyc-taxi-data -f setup_files/populate_fhv_trips.sql
+  psql -U postgres nyc-taxi-data -f setup_files/populate_fhv_trips.sql
   echo "`date`: loaded trips for ${filename}"
 done;
 
-psql nyc-taxi-data -c "CREATE INDEX ON fhv_trips USING BRIN (pickup_datetime) WITH (pages_per_range = 32);"
+psql -U postgres nyc-taxi-data -c "CREATE INDEX ON fhv_trips USING BRIN (pickup_datetime) WITH (pages_per_range = 32);"

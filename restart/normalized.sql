@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS normalized_trips;
+DROP TABLE IF EXISTS normalized_weather;
+
+
 CREATE TABLE normalized_trips (
     trip_id                 bigint,
     vendor_id               varchar,

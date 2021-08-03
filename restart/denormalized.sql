@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS denormalized_trips;
 CREATE TABLE denormalized_trips (
     trip_id                 bigint,
     vendor_id               varchar,

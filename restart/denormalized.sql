@@ -22,7 +22,7 @@ CREATE TABLE denormalized_trips (
     improvement_surcharge   numeric,
     total_amount            numeric,
     payment_type            varchar,
-    trip_type               integer
+    trip_type               integer,
 
     precipitation           numeric,
     snow_depth              numeric,

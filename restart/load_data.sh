@@ -21,3 +21,7 @@ for f in $files; do
     ((i=i%N)); ((i++==0)) && wait
     psql -d postgres -U postgres -p 5432 -c "\copy normalized_trips FROM PROGRAM 'gzip -dc $f' DELIMITER ',' CSV HEADER NULL ''" &
 done
+
+#precompute some solution because they take several hours to run
+psql -U postgres -f cube.sql
+psql -U postgres -f index.sql

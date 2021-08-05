@@ -1,7 +1,7 @@
 create index normalized_trips_hash_trip on normalized_trips using hash (trip_id);
 
 UPDATE pg_index
-SET indisvalid=true
+SET indisvalid=false
 WHERE indrelid = (
     SELECT oid
     FROM pg_class

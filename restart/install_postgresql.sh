@@ -9,5 +9,6 @@ gsutil -m cp -r gs://nyc-taxi-data $HOME/
 # sudo su postgres
 # psql
 # ALTER USER postgres WITH PASSWORD 'K2f7mstuzakFFspH';
-# modify /etc/postgresql/9.5/main/pg_hba.conf change peer > md5 (see https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge)
+# modify 
+#   sudo emacs /etc/postgresql/12/main/pg_hba.conf change peer > md5 (see https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge)
 # sudo service postgresql restart
